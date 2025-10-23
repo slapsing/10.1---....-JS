@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const ageInput = prompt('Введите ваш возраст');
+
+    const isInt = s => /^\s*\d+\s*$/.test(s ?? '');
+    if (!isInt(ageInput)) {
+        alert('Некорректный ввод: нужны числа');
+    } else {
+        const age = Number(ageInput.trim());
+
+        if (age < 18) {
+            alert('Кредит недоступен: минимальный возраст — 18 лет');
+        } else {
+            const amountInput = prompt('Введите желаемую сумму кредита');
+
+            if (!isInt(amountInput)) {
+                alert('Некорректный ввод: нужны числа');
+            } else {
+                const requested = Number(amountInput.trim());
+
+                let limit = 0;
+                if (age <= 21) limit = 50_000;
+                else if (age <= 35) limit = 400_000;
+                else if (age <= 65) limit = 1_000_000;
+                else limit = 0; // старше 65 — не выдаём
+
+                const STEP = 1000;
+                const approved = Math.floor(Math.min(requested, limit) / STEP) * STEP;
+
+                alert(`Мы можем вам выдать ${approved}.`);
+            }
+        }
+    }
+</script>
+
+
+</body>
+</html>

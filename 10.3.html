@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const name = (prompt('Введите ваше имя') ?? '').trim();
+    const yearStr = (prompt('Введите год рождения') ?? '').trim();
+
+    const isNameText = /^[A-Za-zА-Яа-яЁё]+(?:[ '\-][A-Za-zА-Яа-яЁё]+)*$/.test(name);
+    const isYearNumber = /^\d+$/.test(yearStr);
+
+    if (!isNameText || !isYearNumber) {
+        alert('Год не число или пустое имя');
+    } else {
+        const birthYear = Number(yearStr);
+        const currentYear = new Date().getFullYear();
+        const age = currentYear - birthYear;
+        alert(`${name}: ${age}`);
+    }
+</script>
+
+</body>
+</html>

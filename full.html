@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const n = +prompt('Введите число');
+    alert(`${n},${n ** 2},${n ** 3}`);
+</script>
+<script>
+    const code = prompt('Введите промокод');
+    if ((code ?? '').trim().toLowerCase() === 'скидка') {
+        alert('Промокод применён');
+    } else {
+        alert('Промокод не работает');
+    }
+</script>
+<script>
+    const name = (prompt('Введите ваше имя') ?? '').trim();
+    const yearStr = (prompt('Введите год рождения') ?? '').trim();
+
+    const isNameText = /^[A-Za-zА-Яа-яЁё]+(?:[ '\-][A-Za-zА-Яа-яЁё]+)*$/.test(name);
+    const isYearNumber = /^\d+$/.test(yearStr);
+
+    if (!isNameText || !isYearNumber) {
+        alert('Год не число или пустое имя');
+    } else {
+        const birthYear = Number(yearStr);
+        const currentYear = new Date().getFullYear();
+        const age = currentYear - birthYear;
+        alert(`${name}: ${age}`);
+    }
+</script>
+<script>
+    const name = (prompt('Введите ваше имя') ?? '').trim();
+    const yearStr = (prompt('Введите год рождения') ?? '').trim();
+
+    const isNameText = /^[A-Za-zА-Яа-яЁё]+(?:[ '\-][A-Za-zА-Яа-яЁё]+)*$/.test(name);
+    const isYearNumber = /^\d+$/.test(yearStr);
+
+    if (!isNameText || !isYearNumber) {
+        alert('Год не число или пустое имя');
+    } else {
+        const birthYear = Number(yearStr);
+        const currentYear = new Date().getFullYear();
+        const age = currentYear - birthYear;
+
+        const mod10 = age % 10;
+        const mod100 = age % 100;
+        const suffix =
+            (mod100 >= 11 && mod100 <= 14) ? 'лет' :
+                (mod10 === 1) ? 'год' :
+                    (mod10 >= 2 && mod10 <= 4) ? 'года' : 'лет';
+
+        alert(`${name}: ${age} ${suffix}`);
+    }
+</script>
+<script>
+    const ageInput = prompt('Введите ваш возраст');
+
+    const isInt = s => /^\s*\d+\s*$/.test(s ?? '');
+    if (!isInt(ageInput)) {
+        alert('Некорректный ввод: нужны числа');
+    } else {
+        const age = Number(ageInput.trim());
+
+        if (age < 18) {
+            alert('Кредит недоступен: минимальный возраст — 18 лет');
+        } else {
+            const amountInput = prompt('Введите желаемую сумму кредита');
+
+            if (!isInt(amountInput)) {
+                alert('Некорректный ввод: нужны числа');
+            } else {
+                const requested = Number(amountInput.trim());
+
+                let limit = 0;
+                if (age <= 21) limit = 50_000;
+                else if (age <= 35) limit = 400_000;
+                else if (age <= 65) limit = 1_000_000;
+                else limit = 0;
+
+                const STEP = 1000;
+                const approved = Math.floor(Math.min(requested, limit) / STEP) * STEP;
+
+                alert(`Мы можем вам выдать ${approved}.`);
+            }
+        }
+    }
+</script>
+</body>
+</html>
