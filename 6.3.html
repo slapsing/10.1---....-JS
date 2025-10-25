@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const input = prompt('Введите число');
+    const n = Number(input);
+
+    if (!Number.isFinite(n) || n < 0 || !Number.isInteger(n)) {
+        alert('Нужно ввести целое неотрицательное число');
+    } else {
+        const arr = Array.from({ length: n + 1 }, (_, i) => i);
+        console.log(arr);
+        alert(JSON.stringify(arr));
+    }
+</script>
+</body>
+</html>

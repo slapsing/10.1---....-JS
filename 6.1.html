@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const input = prompt('Введите слово или фразу');
+    if (input === null || !input.trim()) {
+        alert('Пустой ввод');
+    } else {
+        const cleaned = input
+            .toLocaleLowerCase('ru-RU')
+            .normalize('NFC')
+            .replace(/[^\p{L}\p{N}]+/gu, '');
+
+        const reversed = [...cleaned].reverse().join('');
+        const isPal = cleaned === reversed;
+
+        alert(`Слово ${input} ${isPal ? 'является' : 'не является'} палиндромом`);
+    }
+</script>
+</body>
+</html>

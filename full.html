@@ -90,5 +90,61 @@
         }
     }
 </script>
+<script>
+    const input = prompt('Введите слово или фразу');
+
+    if (input === null || !input.trim()) {
+        alert('Пустой ввод');
+    } else {
+        const cleaned = input
+            .toLocaleLowerCase('ru-RU')
+            .normalize('NFC')
+            .replace(/[^\p{L}\p{N}]+/gu, '');
+
+        const reversed = [...cleaned].reverse().join('');
+        const isPal = cleaned === reversed;
+
+        alert(`Слово ${input} ${isPal ? 'является' : 'не является'} палиндромом`);
+    }
+</script>
+<script>
+    const arr = [1, 2, 3, 1, 5, 4, 2, 3, 5, 'they', 'don\'t', 'know', 'that', 'we', 'know', 'that', 'they', 'know'];
+    const unique = [...new Set(arr)];
+    alert(unique)
+</script>
+<script>
+    const input = prompt('Введите число');
+    const n = Number(input);
+
+    if (!Number.isFinite(n) || n < 0 || !Number.isInteger(n)) {
+        alert('Нужно ввести целое неотрицательное число');
+    } else {
+        const arr = Array.from({ length: n + 1 }, (_, i) => i);
+        console.log(arr);
+        alert(JSON.stringify(arr));
+    }
+</script>
+<script>
+    const n = 3;
+    for (let i = 0; i < n; i++) {
+        const row = [];
+        for (let j = 0; j < n; j++) {
+            row.push((i + j) % 2 === 0 ? 'x' : 'o');
+        }
+        alert(row.join(' '));
+    }
+</script>
+<script>
+    const obj = {
+        some: 'some',
+        dom: 'text',
+        arr: [1, 2, 3, 4, 5],
+        tom: 'there'
+    };
+
+    const arrValues = Object.values(obj).flat();
+    alert(arrValues);
+
+</script>
 </body>
 </html>
